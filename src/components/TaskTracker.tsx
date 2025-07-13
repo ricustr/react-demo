@@ -24,7 +24,11 @@ const TaskTracker: React.FC = () => {
   const [collapsedTasks, setCollapsedTasks] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+        // logout the user
+        setTasks([]);
+        return;
+    }
     const q = query(collection(db, "tasks"), where("uid", "==", user.uid));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const taskList = snapshot.docs.map((doc) => {
