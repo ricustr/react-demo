@@ -5,7 +5,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-
+import NewPage from "./pages/NewPage";
+import NewPageSignUp from "./pages/NewPageSignUp";
+  
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
 
@@ -14,6 +16,9 @@ const Navbar: React.FC = () => {
       <div className="flex gap-4">
         <Link to="/" className="text-blue-500 hover:underline">
           Home
+        </Link>
+        <Link to="/new-page" className="text-blue-500 hover:underline">
+          New page
         </Link>
         <Link to="/tasks" className="text-blue-500 hover:underline">
           Tasks
@@ -43,8 +48,14 @@ const App: React.FC = () => {
         <div className="min-h-screen bg-gray-100 p-4">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/tasks" element={<TaskTracker />} />
+            <Route
+              path="/tasks"
+              element={
+                <TaskTracker />
+              }
+            />
             <Route path="/about" element={<About />} />
+            <Route path="/new-page" element={<NewPageSignUp />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </div>
